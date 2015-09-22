@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="29f44b52-f397-4d26-b4be-dd1d0430f1a9" Version="1.0.0" Language="en-US" Publisher="Manuel Rueda" />
+    <Identity Id="29f44b52-f397-4d26-b4be-dd1d0430f1a9" Version="1.0.1" Language="en-US" Publisher="Manuel Rueda" />
     <DisplayName>Grunt Runner Policy</DisplayName>
     <Description>Installs the VS 2012 version of the Grunt Runner Policy.</Description>
   </Metadata>
