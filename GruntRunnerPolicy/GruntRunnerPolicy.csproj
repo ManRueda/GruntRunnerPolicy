@@ -1,8 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="11.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <!-- If no configuration is specified, default to Debug, for the current version of VS -->
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration Condition="'$(VisualStudioVersion)' == '11.0'">VS2012_Debug</Configuration>
+    <Configuration Condition="'$(VisualStudioVersion)' == '12.0'">VS2013_Debug</Configuration>
+    <Configuration Condition="'$(VisualStudioVersion)' == '14.0'">VS2015_Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{86EA14D3-2C37-4A36-B99C-622742DDB654}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -11,41 +22,182 @@
     <AssemblyName>GruntRunnerPolicy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <CreateVsixContainer>true</CreateVsixContainer>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2012_Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\VS2012_Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2012_Release|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\VS2012_Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2013_Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\VS2013_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2013_Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\VS2013_Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2015_Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\VS2015_Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'VS2015_Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\VS2015_Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <!-- When targeting VS 2012, add references to the VS 2012 client object model -->
+  <ItemGroup Condition="'$(Configuration)' == 'VS2012_Debug' or '$(Configuration)' == 'VS2012_Release'">
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=11.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=11.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Common, Version=11.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=11.0.0.0">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- When targeting VS 2013, add references to the VS 2013 client object model -->
+  <ItemGroup Condition="'$(Configuration)' == 'VS2013_Debug' or '$(Configuration)' == 'VS2013_Release'">
+    <Reference Include="Microsoft.VisualStudio.Services.Common, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.Client, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Common, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=12.0.0.0">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- When targeting VS 2015, add references to the VS 2015 client object model.
+       In VS 2015, the client OM is no longer in the GAC, so we refer to its location
+       with absolute paths. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'VS2015_Debug' or '$(Configuration)' == 'VS2015_Release'">
+    <TeamExplorerPath>$(ProgramFiles)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer</TeamExplorerPath>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'VS2015_Debug' or '$(Configuration)' == 'VS2015_Release'">
+    <Reference Include="$(TeamExplorerPath)\Microsoft.VisualStudio.Services.Common.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(TeamExplorerPath)\Microsoft.VisualStudio.Services.Client.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(TeamExplorerPath)\Microsoft.TeamFoundation.Common.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(TeamExplorerPath)\Microsoft.TeamFoundation.Client.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(TeamExplorerPath)\Microsoft.TeamFoundation.VersionControl.Common.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(TeamExplorerPath)\Microsoft.TeamFoundation.VersionControl.Client.dll">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
+    <Compile Include="GruntRunner.cs" />
+    <Compile Include="GruntRunnerPolicy.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <VSIXSourceItem Include="GruntRunnerPolicy.pkgdef" />
+    <None Include="packages.config" />
+    <None Include="vs2012.extension.vsixmanifest" />
+    <None Include="vs2013.extension.vsixmanifest" />
+    <None Include="vs2015.extension.vsixmanifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <_VsSdkTargetsPath>$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets</_VsSdkTargetsPath>
+    <_ShouldImportVsSdkTargets>false</_ShouldImportVsSdkTargets>
+    <_ShouldImportVsSdkTargets Condition="'$(VisualStudioVersion)' == '11.0' and ('$(Configuration)' == 'VS2012_Debug' or '$(Configuration)' == 'VS2012_Release')">true</_ShouldImportVsSdkTargets>
+    <_ShouldImportVsSdkTargets Condition="'$(VisualStudioVersion)' == '12.0' and ('$(Configuration)' == 'VS2013_Debug' or '$(Configuration)' == 'VS2013_Release')">true</_ShouldImportVsSdkTargets>
+    <_ShouldImportVsSdkTargets Condition="'$(VisualStudioVersion)' == '14.0' and ('$(Configuration)' == 'VS2015_Debug' or '$(Configuration)' == 'VS2015_Release')">true</_ShouldImportVsSdkTargets>
+  </PropertyGroup>
+  <Target Name="_VsSDKGenerateWarnings" BeforeTargets="BeforeBuild">
+    <Warning Condition="!Exists('$(_VsSdkTargetsPath)')" Text="The Visual Studio SDK is not installed, so no VSIX installer package can be generated." />
+    <Warning Condition="!$(_ShouldImportVsSdkTargets)" Text="The version of Visual Studio you are running ($(VisualStudioVersion)) does not match your currently selected configuration ($(Configuration)), so no VSIX installer package can be generated." />
+  </Target>
+  <Import Condition="$(_ShouldImportVsSdkTargets) and Exists('$(_VsSdkTargetsPath)')" Project="$(_VsSdkTargetsPath)" />
+  <!-- Redefine the FindSourceVsixManifest target -->
+  <Target Name="FindSourceVsixManifest">
+    <ItemGroup>
+      <SourceVsixManifest Condition="'$(VisualStudioVersion)' == '11.0'" Include="vs2012.extension.vsixmanifest" />
+      <SourceVsixManifest Condition="'$(VisualStudioVersion)' == '12.0'" Include="vs2013.extension.vsixmanifest" />
+      <SourceVsixManifest Condition="'$(VisualStudioVersion)' == '14.0'" Include="vs2015.extension.vsixmanifest" />
+    </ItemGroup>
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

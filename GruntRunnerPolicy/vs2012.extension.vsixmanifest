@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="29f44b52-f397-4d26-b4be-dd1d0430f1a9" Version="1.0.0" Language="en-US" Publisher="Manuel Rueda" />
+    <DisplayName>Grunt Runner Policy</DisplayName>
+    <Description>Installs the VS 2012 version of the Grunt Runner Policy.</Description>
+  </Metadata>
+  <Installation InstalledByMsi="false">
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.Pro" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.Premium" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.Ultimate" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.VWDExpress" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.VPDExpress" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.VSWinExpress" />
+    <InstallationTarget Version="11.0" Id="Microsoft.VisualStudio.VSWinDesktopExpress" />
+  </Installation>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" Path="GruntRunnerPolicy.pkgdef" />
+  </Assets>
+</PackageManifest>
